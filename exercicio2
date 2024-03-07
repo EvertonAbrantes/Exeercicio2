@@ -1,0 +1,81 @@
+\\Utilizando o conceito de reuso de código dos exercícios anteriores, faça um algoritmo
+\\que preencha uma matriz dinamicamente com os valores das vendas de uma loja, em que
+\\cada linha represente um mês do ano e cada coluna represente uma semana do mês. O
+\\programa deverá calcular e mostrar:
+\\a) o total vendido em cada mês;
+\\b) o total vendido em cada semana durante todo o ano;
+\\c) o total vendido pela loja no ano.
+import java.util.Scanner;
+
+public class VendasLoja {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        
+        int meses = 12;
+        int semanas = 4;
+        
+        
+        double[][] vendas = new double[meses][semanas];
+        
+        
+        preencherMatriz(vendas, scanner);
+        
+        
+        calcularTotalMeses(vendas);
+        
+        ante o ano
+        calcularTotalSemanas(vendas);
+        
+        
+        calcularTotalAno(vendas);
+        
+        scanner.close();
+    }
+    
+   
+    public static void preencherMatriz(double[][] vendas, Scanner scanner) {
+        for (int i = 0; i < vendas.length; i++) {
+            System.out.println("Digite as vendas para o mês " + (i+1) + ":");
+            for (int j = 0; j < vendas[i].length; j++) {
+                System.out.print("Semana " + (j+1) + ": R$ ");
+                vendas[i][j] = scanner.nextDouble();
+            }
+        }
+    }
+    
+    
+    public static void calcularTotalMeses(double[][] vendas) {
+        System.out.println("\nTotal vendido em cada mês:");
+        for (int i = 0; i < vendas.length; i++) {
+            double totalMes = 0;
+            for (int j = 0; j < vendas[i].length; j++) {
+                totalMes += vendas[i][j];
+            }
+            System.out.println("Mês " + (i+1) + ": R$ " + totalMes);
+        }
+    }
+    
+    
+    public static void calcularTotalSemanas(double[][] vendas) {
+        System.out.println("\nTotal vendido em cada semana durante o ano:");
+        for (int j = 0; j < vendas[0].length; j++) {
+            double totalSemana = 0;
+            for (int i = 0; i < vendas.length; i++) {
+                totalSemana += vendas[i][j];
+            }
+            System.out.println("Semana " + (j+1) + ": R$ " + totalSemana);
+        }
+    }
+    
+    
+    public static void calcularTotalAno(double[][] vendas) {
+        double totalAno = 0;
+        for (int i = 0; i < vendas.length; i++) {
+            for (int j = 0; j < vendas[i].length; j++) {
+                totalAno += vendas[i][j];
+            }
+        }
+        System.out.println("\nTotal vendido pela loja no ano: R$ " + totalAno);
+    }
+}
